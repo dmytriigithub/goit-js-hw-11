@@ -4,7 +4,7 @@ import "izitoast/dist/css/iziToast.min.css";
 import caution from './img/icons/caution.svg'
 
 import getImagesByQuery from "./js/pixabay-api";
-import { clearGallery } from "./js/render-function";
+import { clearGallery } from "./js/render-functions";
 import { form } from "./js/refs";
 
 form.addEventListener('submit', handleSubmit);

@@ -2,7 +2,7 @@ import axios from 'axios';
 import iziToast from "izitoast";
 import "izitoast/dist/css/iziToast.min.css";
 
-import { createGallery, showLoader, hideLoader } from './render-function';
+import { createGallery, showLoader, hideLoader } from './render-functions';
 
 import error from '../img/icons/error.svg';
 
@@ -14,7 +14,7 @@ const params = {
     image_type: 'photo',
     orientation: 'horizontal',
     safesearch: true
-}
+};
 
 function getImagesByQuery(query) {
     showLoader();
