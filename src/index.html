@@ -13,9 +13,27 @@
   <load src="./partials/header.html" icon-path="img/sprite.svg#logo" />
 
   <main>
-    <!-- Loads the specified .html file -->
-    <load src="./partials/search-form.html" />
-    <load src="./partials/gallery.html" />
+    <section class="search-section">
+      <div class="container">
+        <form class="form">
+          <label>
+            <input type="text" name="search_text" placeholder="Search images..." required>
+          </label>
+          <button type="submit">Search</button>
+        </form>
+
+      </div>
+    </section>
+
+    <section class="gallery-section">
+      <div class="container">
+        <div class="loader-box">
+          <span class="loader"></span>
+        </div>
+        <ul class="gallery"></ul>
+      </div>
+
+    </section>
   </main>
 
   <script type="module" src="./main.js"></script>
