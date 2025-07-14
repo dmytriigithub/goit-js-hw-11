@@ -7,9 +7,8 @@ import { createGallery, showLoader, hideLoader } from './render-function';
 import error from '../img/icons/error.svg';
 
 
-
 const API_KEY = '51312083-0c9a0730bd4d2b20e847ab802';
-const URL = `https://pixabay.com/api`;
+const URL = `https://pixabay.com/api/`;
 const params = {
     key: API_KEY,
     image_type: 'photo',
