@@ -18,6 +18,7 @@ const params = {
 }
 
 function getImagesByQuery(query) {
+    showLoader();
 
     axios.get(URL, {
         params: {
@@ -27,10 +28,9 @@ function getImagesByQuery(query) {
     })
         .then(response => response.data.hits)
         .then(data => {
-            hideLoader();
-            data.length ?
-                createGallery(data) :
-                iziToast.error({
+            data.length
+                ? createGallery(data)
+                : iziToast.error({
                     messageColor: '#fff',
                     iconColor: '#fff',
                     maxWidth: '350px',
@@ -38,17 +38,13 @@ function getImagesByQuery(query) {
                     position: 'topRight',
                     color: '#ef4040',
                     message: 'Sorry, there are no images matching your search query. Please try again!'
-                })
-        }
-
-        )
+                });
+        })
         .catch(err => {
             console.log(err);
-            hideLoader();
         })
-        .finally(showLoader());
-
-
+        .finally(() => hideLoader());
 }
+
 
 export default getImagesByQuery;
