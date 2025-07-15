@@ -1,11 +1,12 @@
 import iziToast from "izitoast";
 import "izitoast/dist/css/iziToast.min.css";
 
-import caution from './img/icons/caution.svg'
+import caution from './img/icons/caution.svg';
+import error from './img/icons/error.svg';
 
 import getImagesByQuery from "./js/pixabay-api";
-import { clearGallery } from "./js/render-functions";
 import { form } from "./js/refs";
+import { createGallery, showLoader, hideLoader, clearGallery } from './js/render-functions';
 
 form.addEventListener('submit', handleSubmit);
 
@@ -15,8 +16,28 @@ export function handleSubmit(event) {
     const input = form.elements.search_text.value.trim();
     clearGallery();
 
-    input ?
-        getImagesByQuery(input) :
+    if (input) {
+        showLoader();
+        getImagesByQuery(input)
+            .then(response => response.data.hits)
+            .then(data => {
+                data.length ?
+                    createGallery(data) :
+                    iziToast.error({
+                        messageColor: '#fff',
+                        iconColor: '#fff',
+                        maxWidth: '350px',
+                        iconUrl: error,
+                        position: 'topRight',
+                        color: '#ef4040',
+                        message: 'Sorry, there are no images matching your search query. Please try again!'
+                    });
+            })
+            .catch(err => {
+                console.log(err);
+            })
+            .finally(() => hideLoader());
+    } else {
         iziToast.warning({
             messageColor: '#fff',
             iconUrl: caution,
@@ -26,6 +47,6 @@ export function handleSubmit(event) {
             color: '#ffa000',
             message: 'You forgot type your request',
         });
-
+    }
     form.reset();
 }
