@@ -17,6 +17,7 @@ function getImagesByQuery(query) {
             ...params
         }
     })
+        .then(response => response.data.hits)
 }
 
 

@@ -19,7 +19,6 @@ export function handleSubmit(event) {
     if (input) {
         showLoader();
         getImagesByQuery(input)
-            .then(response => response.data.hits)
             .then(data => {
                 data.length ?
                     createGallery(data) :
